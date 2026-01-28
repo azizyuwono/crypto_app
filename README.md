@@ -21,6 +21,15 @@ A modern, clean cryptocurrency portfolio application built with Flutter. This pr
     -   `intl`: For currency formatting.
     -   `google_fonts`: For typography.
 
+## Downloads
+
+Latest builds for Android and iOS are available in the **[Releases](../../releases)** section.
+
+| Platform | Status | Note |
+| :--- | :--- | :--- |
+| **Android** | ✅ Available | Universal APK. Install directly. |
+| **iOS** | ⚠️ Available | Unsigned `.ipa`. Requires manual signing (e.g. AltStore) or Simulator. |
+
 ## Getting Started
 
 1.  **Clone the repository**:
