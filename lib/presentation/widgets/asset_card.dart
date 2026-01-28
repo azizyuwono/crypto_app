@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:simple_crypto/theme.dart';
-import 'package:simple_crypto/models/crytpo_card.dart';
+import 'package:intl/intl.dart';
+import 'package:simple_crypto/data/models/crypto.dart';
 
-class CryptoView extends StatelessWidget {
+class AssetCard extends StatelessWidget {
   final Crypto crypto;
-  // ignore: prefer_const_constructors_in_immutables, use_key_in_widget_constructors
-  const CryptoView(this.crypto);
+
+  const AssetCard({super.key, required this.crypto});
+
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final currencyFormatter = NumberFormat.currency(symbol: '\$', decimalDigits: 2);
+
     return Container(
       width: double.infinity,
       height: 72,
       decoration: BoxDecoration(
-          color: whiteColor, borderRadius: BorderRadius.circular(15)),
+          color: theme.colorScheme.surface,
+          borderRadius: BorderRadius.circular(15)),
       child: Padding(
         padding: const EdgeInsets.symmetric(
           vertical: 14,
@@ -29,33 +34,36 @@ class CryptoView extends StatelessWidget {
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   crypto.name,
-                  style: subStyle,
+                  style: theme.textTheme.bodyMedium,
                 ),
                 const SizedBox(
                   height: 2,
                 ),
                 Text(
-                  '\$${crypto.price}',
-                  style: titleStyle,
+                  currencyFormatter.format(crypto.price),
+                  style: theme.textTheme.titleMedium,
                 ),
               ],
             ),
             const Spacer(),
             Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  '+${crypto.percent}%',
-                  style: percentStyle,
+                  '+${crypto.changePercent}%',
+                  style: theme.textTheme.displaySmall,
                 ),
                 const SizedBox(
                   height: 2,
                 ),
                 Text(
                   'Today',
-                  style: subStyle.copyWith(
+                  style: theme.textTheme.bodyMedium?.copyWith(
                     fontWeight: FontWeight.w500,
                   ),
                 ),
